@@ -7,10 +7,10 @@ from fabric.api import *
 """
 Base configuration
 """
-env.project_name = 'totebot'
-env.deployed_name = 'totebot'
+env.project_name = 'totebot2'
+env.deployed_name = 'totebot2'
 env.deploy_to_servers = False
-env.repo_url = 'git@github.com:nprapps/%(project_name)s.git' % env
+env.repo_url = 'git@github.com:jeremyjbowers/%(project_name)s.git' % env
 env.alt_repo_url = None
 env.user = 'ubuntu'
 env.python = 'python2.7'
@@ -20,18 +20,15 @@ env.forward_agent = True
 env.user = 'ubuntu'
 env.key_filename = os.environ.get('KEY_FILENAME')
 
+
 """
 Environments
 """
 def production():
     env.settings = 'production'
     env.s3_buckets = ['apps.npr.org', 'apps2.npr.org']
-    env.hosts = [os.environ.get('HUBOT_IRC_IP')]
+    env.hosts = ['54.214.20.225']
 
-def staging():
-    env.settings = 'staging'
-    env.s3_buckets = ['stage-apps.npr.org']
-    env.hosts = ['0.0.0.0']
 
 """
 Branches
@@ -42,17 +39,20 @@ def stable():
     """
     env.branch = 'stable'
 
+
 def master():
     """
     Work on development branch.
     """
     env.branch = 'master'
 
+
 def branch(branch_name):
     """
     Work on any specified branch.
     """
     env.branch = branch_name
+
 
 def _confirm_branch():
     """
@@ -63,6 +63,7 @@ def _confirm_branch():
         if answer not in ('y','Y','yes','Yes','buzz off','screw you'):
             exit()
 
+
 """
 Setup
 """
@@ -70,38 +71,42 @@ def setup():
     """
     Setup servers for deployment.
     """
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production])
     require('branch', provided_by=[stable, master, branch])
 
     setup_directories()
     clone_repo()
     checkout_latest()
     install_requirements()
+    setup_init()
+
 
 def setup_directories():
     """
     Create server directories.
     """
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production])
 
     run('mkdir -p %(path)s' % env)
+
 
 def clone_repo():
     """
     Clone the source repository.
     """
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production])
 
     run('git clone %(repo_url)s %(repo_path)s' % env)
 
     if env.get('alt_repo_url', None):
         run('git remote add bitbucket %(alt_repo_url)s' % env)
 
+
 def checkout_latest(remote='origin'):
     """
     Checkout the latest source.
     """
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production])
 
     env.remote = remote
 
@@ -113,26 +118,38 @@ def install_requirements():
     """
     Install the latest requirements.
     """
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production])
 
     run('cd %(repo_path)s; npm install' % env)
+
+
+def setup_init():
+    """
+    Creates the init script.
+    """
+    require('settings', provided_by=[production])
+    with settings(warn_only=True):
+        sudo('ln -s %(repo_path)%/%(project_name)s.conf /etc/init/%(project_name)s.conf' % env)
+    sudo('initctl reload-configuration')
 
 
 """
 Deployment
 """
 def restart_init():
-    require('settings', provided_by=[production, staging])
-    sudo('service totebot restart')
+    require('settings', provided_by=[production])
+    sudo('service totebot2 restart')
+
 
 def deploy(remote='origin'):
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production])
     require('branch', provided_by=[stable, master, branch])
 
     _confirm_branch()
     checkout_latest(remote)
     install_requirements()
     restart_init()
+
 
 """
 Destruction
