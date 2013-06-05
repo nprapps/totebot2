@@ -1,30 +1,40 @@
 # Totebot
 
-Derived from the ubiquitous NPR tote bag, Totebot follows our IRC room on Grove.io and helps us set up chats, monitor our servers, and pick us up when we're down.
+Derived from the ubiquitous NPR tote bag, Totebot2 follows our conversations on HipChat and provides us with some ambient awareness. Also, humor.
 
 Thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.com/) and their [copyboy project](https://github.com/datadesk/copyboy).
 
 ## Local development
-Make sure you have coffee installed globally. Many problems involve not having the coffee executable within your path.
-```
-sudo npm install coffee-script -g
-```
+1. Create a [new HipChat account](https://www.hipchat.com/help/page/how-do-i-invite-other-users/) for your bot to use. Stay signed in to the account - we'll need to access its account settings later.
 
-Check out the repository and cd into it. Then, install the NPM requirements.
-```
-npm install
-```
+1. Make sure native dependencies are installed:
 
-Export the proper environment variables. Talk to Jeremy or Chris about these values.
+        (e.g. OS X with brew)
+        % brew install icu4c
+        % brew link icu4c
+
+        (e.g. Linux with apt-get)
+        % apt-get install libexpat1-dev
+        % apt-get install libicu-dev
+
+1. Install `hubot` from npm, if you don't already have it:
+
+        % npm install --global hubot
+
+1. Switch to the new `hubot` directory:
+
+        % cd <above path>
+
+1. Install `hubot` dependencies:
+
+        % npm install
+
+1. Export the proper environment variables. Talk to Jeremy or Chris about these values.
 ```
-export KEY_FILENAME='~/.ssh/nprapps/nprapps.pem'
-export PORT=9001
-export HUBOT_IRC_IP='10.20.30.40'
-export HUBOT_IRC_NICK='irc_nick'
-export HUBOT_IRC_NICKSERV_PASSWORD='nickserv_password'
-export HUBOT_IRC_PASSWORD='irc_password'
-export HUBOT_IRC_ROOMS='#room0, #room1'
-export HUBOT_IRC_SERVER='irc.server.com'
+export HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
+export HUBOT_HIPCHAT_PASSWORD=password
+export HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
+export HUBOT_LOG_LEVEL=debug
 ```
 
 ## Deployment
@@ -33,4 +43,4 @@ Like your new scripts? Add them to the repository and then send them along.
 fab production master deploy
 ```
 
-We don't have a staging environment yet. I'll get on that soon, Brian.
+We don't have a staging environment yet.
