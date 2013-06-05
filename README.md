@@ -2,7 +2,12 @@
 
 Derived from the ubiquitous NPR tote bag, Totebot2 follows our conversations on HipChat and provides us with some ambient awareness. Also, humor.
 
-Thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.com/) and their [copyboy project](https://github.com/datadesk/copyboy).
+Additional thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.com/) and their [copyboy project](https://github.com/datadesk/copyboy).
+
+## Some light reading
+* [The hubot official docs](http://hubot.github.com/)
+* [hubot-hipchat](https://github.com/hipchat/hubot-hipchat)
+* [More hubot scripts](https://github.com/github/hubot-scripts/tree/master/src/scripts)
 
 ## Local development
 1. Create a [new HipChat account](https://www.hipchat.com/help/page/how-do-i-invite-other-users/) for your bot to use. Stay signed in to the account - we'll need to access its account settings later.
