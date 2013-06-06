@@ -10,5 +10,5 @@ rush = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /( rush)/i, (msg) ->
+  robot.hear /( rush|2112| geddy| peart| of salesmen)/i, (msg) ->
     msg.send msg.random rush
