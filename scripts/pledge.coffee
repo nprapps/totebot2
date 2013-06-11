@@ -7,5 +7,5 @@ antics = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /(promise|pledge|support|gift|bequest|bequeath|donate|membership)/i, (msg) ->
+  robot.hear /(promise|pledge|gift|bequest|bequeath|donate|membership)/i, (msg) ->
     msg.send msg.random antics
