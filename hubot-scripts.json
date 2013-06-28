@@ -1,1 +1,1 @@
-["tweet.coffee", "shipit.coffee"]
+["tweet.coffee", "shipit.coffee", "setenv.coffee", "wunderground.coffee"]
