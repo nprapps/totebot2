@@ -129,7 +129,7 @@ def setup_init():
     """
     require('settings', provided_by=[production])
     with settings(warn_only=True):
-        sudo('ln -s %(repo_path)%/%(project_name)s.conf /etc/init/%(project_name)s.conf' % env)
+        sudo('ln -s %(repo_path)s/%(project_name)s.conf /etc/init/%(project_name)s.conf' % env)
     sudo('initctl reload-configuration')
 
 
