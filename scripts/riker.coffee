@@ -19,7 +19,7 @@ rikers = [
 ]
 
 module.exports = (robot) ->
-  robot.respond /riker me/i, (msg) ->
+  robot.respond /(riker me|make it so)/i, (msg) ->
     msg.send rikers[Math.floor(Math.random()*rikers.length)]
 
   robot.respond /how many rikers are there/i, (msg) ->
