@@ -20,7 +20,7 @@ rikers = [
 
 module.exports = (robot) ->
   robot.respond /riker me/i, (msg) ->
-    msg.send cats[Math.floor(Math.random()*cats.length)]
+    msg.send rikers[Math.floor(Math.random()*rikers.length)]
 
   robot.respond /how many rikers are there/i, (msg) ->
     msg.send "There are #{rikers.length} Rikers."
