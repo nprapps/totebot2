@@ -12,9 +12,7 @@
 #   hubot riker me - Receive an inspirational Riker
 
 rikers = [
-  "https://gimmebar-assets.s3.amazonaws.com/51e59d9ecd8c9.gif",
   "https://gimmebar-assets.s3.amazonaws.com/51e59d14aa877.gif",
-  "https://gimmebar-assets.s3.amazonaws.com/51e59b7b02dfa.gif",
   "https://gimmebar-assets.s3.amazonaws.com/51e5a02bbd8fc.gif"
 ]
 
