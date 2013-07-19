@@ -11,9 +11,11 @@
 # Commands:
 #   hammer time - Can't touch this
 
-hammer = "http://www.the90sbutton.com/images/default/mchammer.gif"
+hammer = [
+	"http://www.the90sbutton.com/images/default/mchammer.gif",
+	"http://gifs.gifbin.com/1236681958_hammer-time.gif"
+]
 
 module.exports = (robot) ->
   robot.hear /(hammer time|Hammer Time|can't touch this)/i, (msg) ->
-    msg.send "Can't Touch This"
-    msg.send hammer
+    msg.send msg.random hammer
