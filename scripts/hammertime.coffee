@@ -17,5 +17,5 @@ hammer = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /(hammer time|Hammer Time|can't touch this)/i, (msg) ->
+  robot.hear /(hammer time| hammer time|can't touch this| can't touch this)/i, (msg) ->
     msg.send msg.random hammer
