@@ -2,7 +2,7 @@
 #   Let us know what's for lunch.
 #
 # Commands:
-#   hubot what's for lunch?
+#   hubot me want food
 
 moment = require('moment')
 jsdom = require('jsdom').jsdom
