@@ -13,14 +13,16 @@ url += "/$file/"
 url += moment().format('ddd').toLowerCase();
 url += ".htm"
 
+truckUrl = "http://foodtruckfiesta.com/dc-food-truck-list/"
+
 module.exports = (robot) ->
     robot.respond /me want food/i, (msg) -> 
       msg
         .http(url)
         .get() (err, res, body) ->
             if err
-                msg.send 'I can\'t find a menu for today.'            
-            else 
+                msg.send 'I can\'t find a menu for today.'
+            else
                 window = (jsdom body, null,
                   features :
                     FetchExternalResources : false
@@ -40,3 +42,29 @@ module.exports = (robot) ->
                                               .replace(/(&amp;)/g, '&')
                         food += menu_text + '\n\n'
                 msg.send food
+
+    robot.respond /food truck me/i, (msg) -> 
+      msg
+        .http(truckUrl)
+        .get() (err, res, body) ->
+            if err
+                msg.send 'I can\'t find a menu for today.'
+            else
+                window = (jsdom body, null,
+                  features :
+                    FetchExternalResources : false
+                    ProcessExternalResources : false
+                    MutationEvents : false
+                    QuerySelector : false
+                ).createWindow()
+
+                trucks = ""
+
+                $ = require('jquery').create(window)
+
+                truckElements = $("h2:contains('Union')").nextUntil("h2").find('a span');
+
+                truckElements.each (index, element) =>
+                    if $(element).text()
+                        trucks += $(element).text() + '\n'
+                msg.send trucks
