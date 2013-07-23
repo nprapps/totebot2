@@ -2,7 +2,8 @@
 #   Let us know what's for lunch.
 #
 # Commands:
-#   hubot me want food
+#   hubot me want food - show today's Sound Bites menu
+#   hubot food truck me - show a list of food trucks near Union Station
 
 moment = require('moment')
 jsdom = require('jsdom').jsdom
