@@ -18,6 +18,9 @@ module.exports = (robot) ->
       msg
         .http(url)
         .get() (err, res, body) ->
+            if err
+                msg.send 'I can\'t find a menu for today.'            
+            else 
                 window = (jsdom body, null,
                   features :
                     FetchExternalResources : false
