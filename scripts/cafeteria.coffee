@@ -31,7 +31,7 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
-                food = "/quote "
+                food = "Here's the Sound Bites menu for today: \n\n"
 
                 $ = require('jquery').create(window)
                 $('h2, span').each (index, element) =>
