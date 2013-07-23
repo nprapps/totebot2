@@ -6,6 +6,7 @@
 
 moment = require('moment')
 jsdom = require('jsdom').jsdom
+
 url = "http://dining.guckenheimer.com/clients/npr/FSS/fss.nsf/weeklyMenuLaunch/95RPBM~"
 url += moment().startOf('week').add('days', 1).format('MM-DD-YYYY')
 url += "/$file/"
@@ -25,8 +26,14 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
+                food = "/quote "
+
                 $ = require('jquery').create(window)
-                $('body').remove('a')
-                food = $('body').html()
-                console.log(url)
+                $('h2, span').each (index, element) =>
+                    if $(element).text()
+                        menu_text = $(element).html()
+                                              .replace(/(<br \/>)/g, '\n')
+                                              .replace(/(&nbsp;)/g, ' ')
+                                              .replace(/(&amp;)/g, '&')
+                        food += menu_text + '\n\n'
                 msg.send food
