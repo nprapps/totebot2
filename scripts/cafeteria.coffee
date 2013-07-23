@@ -58,7 +58,7 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
-                trucks = ""
+                trucks = "Here are the food trucks near Union Station today: \n\n"
 
                 $ = require('jquery').create(window)
 
