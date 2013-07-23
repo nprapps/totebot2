@@ -22,7 +22,10 @@
   "dependencies": {
     "hubot": ">= 2.5.1",
     "hubot-scripts": ">= 2.4.2",
-    "hubot-hipchat": "~2.5.1-1"
+    "hubot-hipchat": "~2.5.1-1",
+    "jsdom": ">=0.8.1",
+    "jquery": "",
+    "moment": ""
   },
   "engines": {
     "node": ">= 0.8.x",
