@@ -90,6 +90,6 @@ module.exports = (robot) ->
                           trucks += $(element).text() + '\n'
 
 
-                trucks += '\n http://foodtruckfiesta.com/apps/maplarge.html'
+                trucks += '\nhttp://foodtruckfiesta.com/apps/maplarge.html'
 
                 msg.send trucks
