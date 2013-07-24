@@ -63,8 +63,11 @@ module.exports = (robot) ->
 
                 $ = require('jquery').create(window)
 
-                unionStationTrucks = $("h2:contains('Union')").nextUntil("h2").find('a span');
-                cnnTrucks = $("h2:contains('CNN')").nextUntil("h2").find('a span');
+                unionStationTrucks = $("h2:contains('Union')").nextUntil("h2").find('a span')
+                cnnTrucks = $("h2:contains('CNN')").nextUntil("h2").find('a span')
+                nomaTrucks = $("h2:contains('NoMa')").nextUntil("h2").find('a span')
+
+
 
                 if unionStationTrucks.length > 0
                   trucks += '## Union Station\n'
@@ -78,5 +81,15 @@ module.exports = (robot) ->
                   cnnTrucks.each (index, element) =>
                       if $(element).text()
                           trucks += $(element).text() + '\n'
+
+                if nomaTrucks.length > 0
+                  trucks += '\n## NoMa\n'
+
+                  nomaTrucks.each (index, element) =>
+                      if $(element).text()
+                          trucks += $(element).text() + '\n'
+
+
+                trucks += '\n http://foodtruckfiesta.com/apps/maplarge.html'
 
                 msg.send trucks
