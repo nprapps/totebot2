@@ -59,7 +59,7 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
-                trucks = "Here are the food trucks near us today: \n\n"
+                trucks = "Here are the food trucks near us today: \n"
 
                 $ = require('jquery').create(window)
 
@@ -73,7 +73,7 @@ module.exports = (robot) ->
                           trucks += $(element).text() + '\n'
 
                 if cnnTrucks.length > 0
-                  trucks += '\n## CNN\n\n'
+                  trucks += '\n## CNN\n'
 
                   cnnTrucks.each (index, element) =>
                       if $(element).text()
