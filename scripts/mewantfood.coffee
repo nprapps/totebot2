@@ -59,7 +59,7 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
-                trucks = "Here are the food trucks near us today: \n"
+                trucks = "Here are the food trucks near us today: \n\n"
 
                 $ = require('jquery').create(window)
 
@@ -67,7 +67,7 @@ module.exports = (robot) ->
                 cnnTrucks = $("h2:contains('CNN')").nextUntil("h2").find('a span');
 
                 if unionStationTrucks.length > 0
-                  trucks += '## Union Station\n\n'
+                  trucks += '## Union Station\n'
                   unionStationTrucks.each (index, element) =>
                       if $(element).text()
                           trucks += $(element).text() + '\n'
