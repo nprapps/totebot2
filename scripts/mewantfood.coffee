@@ -61,36 +61,17 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
-                trucks = "Here are the food trucks near us today: \n\n"
-
+                trucks = "Here are the food trucks near us today: \n"
+                mapAreas = ['Union Station', 'CNN', 'NoMa']
                 $ = require('jquery').create(window)
 
-                unionStationTrucks = $("h2:contains('Union')").nextUntil("h2").find('a span')
-                cnnTrucks = $("h2:contains('CNN')").nextUntil("h2").find('a span')
-                nomaTrucks = $("h2:contains('NoMa')").nextUntil("h2").find('a span')
-
-
-
-                if unionStationTrucks.length > 0
-                  trucks += '## Union Station\n'
-                  unionStationTrucks.each (index, element) =>
-                      if $(element).text()
-                          trucks += $(element).text() + '\n'
-
-                if cnnTrucks.length > 0
-                  trucks += '\n## CNN\n'
-
-                  cnnTrucks.each (index, element) =>
-                      if $(element).text()
-                          trucks += $(element).text() + '\n'
-
-                if nomaTrucks.length > 0
-                  trucks += '\n## NoMa\n'
-
-                  nomaTrucks.each (index, element) =>
-                      if $(element).text()
-                          trucks += $(element).text() + '\n'
-
+                for area in mapAreas
+                  selector = "h2:contains(" + area + ")"
+                  truckElements = $(selector).nextUntil("h2").find('a span')
+                  if truckElements.length > 0
+                    trucks += '\n## ' + area + '\n'
+                    truckElements.each (index, element) =>
+                      trucks += $(element).text() + '\n'
 
                 trucks += '\nhttp://foodtruckfiesta.com/apps/maplarge.html'
 
