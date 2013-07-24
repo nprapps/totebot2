@@ -17,7 +17,7 @@ url += ".htm"
 truckUrl = "http://foodtruckfiesta.com/dc-food-truck-list/"
 
 module.exports = (robot) ->
-    robot.respond /me want food/i, (msg) -> 
+    robot.respond /me want food/i, (msg) ->
       msg
         .http(url)
         .get() (err, res, body) ->
@@ -44,7 +44,7 @@ module.exports = (robot) ->
                         food += menu_text + '\n\n'
                 msg.send food
 
-    robot.respond /food truck me/i, (msg) -> 
+    robot.respond /food truck me/i, (msg) ->
       msg
         .http(truckUrl)
         .get() (err, res, body) ->
@@ -59,13 +59,24 @@ module.exports = (robot) ->
                     QuerySelector : false
                 ).createWindow()
 
-                trucks = "Here are the food trucks near Union Station today: \n\n"
+                trucks = "Here are the food trucks near us today: \n\n"
 
                 $ = require('jquery').create(window)
 
-                truckElements = $("h2:contains('Union')").nextUntil("h2").find('a span');
+                unionStationTrucks = $("h2:contains('Union')").nextUntil("h2").find('a span');
+                cnnTrucks = $("h2:contains('CNN')").nextUntil("h2").find('a span');
 
-                truckElements.each (index, element) =>
-                    if $(element).text()
-                        trucks += $(element).text() + '\n'
+                if unionStationTrucks.length > 0
+                  trucks += '## Union Station\n\n'
+                  unionStationTrucks.each (index, element) =>
+                      if $(element).text()
+                          trucks += $(element).text() + '\n'
+
+                if cnnTrucks.length > 0
+                  trucks += '\n## CNN\n\n'
+
+                  cnnTrucks.each (index, element) =>
+                      if $(element).text()
+                          trucks += $(element).text() + '\n'
+
                 msg.send trucks
