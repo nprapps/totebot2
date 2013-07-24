@@ -67,11 +67,11 @@ module.exports = (robot) ->
 
                 for area in mapAreas
                   selector = "h2:contains(" + area + ")"
-                  truckElements = $(selector).nextUntil("h2").find('a span')
+                  truckElements = $(selector).nextUntil("h2").find('a')
                   if truckElements.length > 0
                     trucks += '\n## ' + area + '\n'
                     truckElements.each (index, element) =>
-                      trucks += $(element).text() + '\n'
+                      trucks += $(element).find('span').text() + ' ' + $(element).attr('href') + '\n'
 
                 trucks += '\nhttp://foodtruckfiesta.com/apps/maplarge.html'
 
