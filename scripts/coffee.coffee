@@ -14,7 +14,8 @@
 coffee = [
   "http://static.dannydebelius.com/img/coffee.png",
   "http://bukk.it/coffee.gif",
-  "http://bukk.it/coffeecoffee.gif"
+  "http://bukk.it/coffeecoffee.gif",
+  "http://bukk.it/caffeine.gif"
 ]
 
 module.exports = (robot) ->
