@@ -41,7 +41,9 @@ module.exports = (robot) ->
                                               .replace(/(<br \/>)/g, '\n')
                                               .replace(/(&nbsp;)/g, ' ')
                                               .replace(/(&amp;)/g, '&')
-                        food += menu_text + '\n\n'
+                        food += menu_text + '\n'
+                        if element.style['0'] != 'font-weight'
+                          food += '\n'
                 msg.send food
 
     robot.respond /food truck me/i, (msg) ->
