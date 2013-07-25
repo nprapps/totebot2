@@ -8,16 +8,15 @@
 moment = require('moment')
 jsdom = require('jsdom').jsdom
 
-url = "http://dining.guckenheimer.com/clients/npr/FSS/fss.nsf/weeklyMenuLaunch/95RPBM~"
-url += moment().startOf('week').add('days', 1).format('MM-DD-YYYY')
-url += "/$file/"
-url += moment().format('ddd').toLowerCase();
-url += ".htm"
-
 truckUrl = "http://foodtruckfiesta.com/dc-food-truck-list/"
 
 module.exports = (robot) ->
     robot.respond /me want food/i, (msg) ->
+      url = "http://dining.guckenheimer.com/clients/npr/FSS/fss.nsf/weeklyMenuLaunch/95RPBM~"
+      url += moment().startOf('week').add('days', 1).format('MM-DD-YYYY')
+      url += "/$file/"
+      url += moment().format('ddd').toLowerCase()
+      url += ".htm"
       msg
         .http(url)
         .get() (err, res, body) ->
