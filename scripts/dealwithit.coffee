@@ -26,7 +26,8 @@ deal = [
   "http://i.imgur.com/oe01J.gif",
   "http://i.imgur.com/N5N4x.gif",
   "http://i.imgur.com/Z3KIP.gif",
-  "http://i.imgur.com/oFo42.gif"
+  "http://i.imgur.com/oFo42.gif",
+  "http://www.onthemedia.org/2013/may/17/journalistic-civil-war-odyssey/"
 ]
 
 module.exports = (robot) ->
