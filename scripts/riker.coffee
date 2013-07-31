@@ -13,7 +13,8 @@
 
 rikers = [
   "https://gimmebar-assets.s3.amazonaws.com/51e59d14aa877.gif",
-  "https://gimmebar-assets.s3.amazonaws.com/51e5a02bbd8fc.gif"
+  "https://gimmebar-assets.s3.amazonaws.com/51e5a02bbd8fc.gif",
+  "http://bukk.it/rikerdeal.gif"
 ]
 
 reverseRiker = "https://gimmebar-assets.s3.amazonaws.com/51e59d9ecd8c9.gif"
