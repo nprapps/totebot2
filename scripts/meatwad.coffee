@@ -11,8 +11,7 @@ meatwad = [
 	"https://s3.amazonaws.com/meatwad/meatwad_hell_no.mp3",
 	"https://s3.amazonaws.com/meatwad/meatwad_last_time.mp3",
 	"https://s3.amazonaws.com/meatwad/meatwad_love.mp3",
-	  robot.hear /meatwad gimme food/i, (msg) ->
-  	msg.send base_meat + 'food.mp3'"https://s3.amazonaws.com/meatwad/meatwad_tired.mp3",
+	"https://s3.amazonaws.com/meatwad/meatwad_tired.mp3",
 	"https://s3.amazonaws.com/meatwad/meatwad_whiskey.mp3"
 ]
 
@@ -41,5 +40,5 @@ module.exports = (robot) ->
   	msg.send base_meat + 'last_time.mp3'
 
   robot.hear /meatwad I'm tired/i, (msg) ->
-  	msg.send base_meat + 'tired.mp3'
+  	msg.send base_meat + 'love.mp3'
 
