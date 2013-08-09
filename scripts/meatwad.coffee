@@ -3,7 +3,6 @@
 #
 # Commands:
 #   hubot meatwad me - get a random Meatwad
-#   hubot meatwad on foo - get Meatwad's advice
 
 meatwad = [
 	"https://s3.amazonaws.com/meatwad/meatwad_cigs.mp3",
@@ -17,5 +16,5 @@ meatwad = [
 ]
 
 module.exports = (robot) ->
-  robot.respond /meatwad me/i, (msg) ->
-    msg.send meatwad.random
+  robot.hear /meatwad me/i, (msg) ->
+    msg.send msg.random meatwad
