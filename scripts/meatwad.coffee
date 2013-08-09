@@ -40,5 +40,5 @@ module.exports = (robot) ->
   	msg.send base_meat + 'last_time.mp3'
 
   robot.hear /meatwad I'm tired/i, (msg) ->
-  	msg.send base_meat + 'love.mp3'
+  	msg.send base_meat + 'tired.mp3'
 
