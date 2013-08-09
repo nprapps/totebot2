@@ -15,9 +15,6 @@ meatwad = [
 	"https://s3.amazonaws.com/meatwad/meatwad_whiskey.mp3"
 ]
 
-meatwad_pic = "http://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Meatwad.png/200px-Meatwad.png"
-
 module.exports = (robot) ->
   robot.hear /meatwad me/i, (msg) ->
-  	msg.send meatwad_pic
     msg.send msg.random meatwad
