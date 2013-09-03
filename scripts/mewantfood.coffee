@@ -76,7 +76,7 @@ get_food_trucks = (msg) ->
             msg.send trucks
 
 module.exports = (robot) ->
-    robot.respond /me want food|menu me/i, (msg) ->
+    robot.respond /me want food|menu me|what's for lunch|lunch/i, (msg) ->
       get_soundbites_menu(msg)
       get_food_trucks(msg)
 
