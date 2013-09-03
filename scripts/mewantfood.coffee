@@ -88,4 +88,3 @@ module.exports = (robot) ->
       if name == 'BrianBoyer'
         get_soundbites_menu(msg)
         get_food_trucks(msg)
-        msg.send name
