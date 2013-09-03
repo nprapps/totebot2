@@ -83,6 +83,6 @@ module.exports = (robot) ->
       get_food_trucks(msg)
 
     robot.hear /lunch/i, (msg) ->
-      if msg.message.user.name === "dannydb"
+      if msg.message.user.name == "dannydb"
         get_soundbites_menu(msg)
         get_food_trucks(msg)
