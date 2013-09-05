@@ -85,6 +85,6 @@ module.exports = (robot) ->
 
     robot.hear /lunch/i, (msg) ->
       name = msg.message.user.name
-      if name == 'Brian Boyer' or name == 'Danny DeBelius'
+      if name == 'Brian Boyer'
         get_soundbites_menu(msg)
         get_food_trucks(msg)
