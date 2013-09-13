@@ -1,3 +1,3 @@
 module.exports = (robot) ->
   robot.hear /( hangout|hangout|scrum| scrum)/i, (msg) ->
-    msg.send "https://plus.google.com/hangouts/_/25e1f11eb6db7797a37a7f0bc84c661cc82df6d2?authuser=0&hl=en"
+    msg.send "https://plus.google.com/hangouts/_/ce10fc7c88b1fc271d5bd8a20ce99cae745c18e5?authuser=0&hl=en"
