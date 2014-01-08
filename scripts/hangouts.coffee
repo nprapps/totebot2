@@ -65,8 +65,7 @@ module.exports = (robot) ->
         msg.send "I'm sorry. Something went wrong and I wasn't able to create a hangout :("
       else
         response  = "I've started a hangout titled '#{summary}'\n"
-        response += "Primary account: #{event.hangoutLink}\n"
-        response += "Secondary account: #{event.hangoutLink}?authuser=1"
+        response += "#{event.hangoutLink}"
         msg.send response
 
   createCalendarEvent = (msg, summary, description, callback) ->
