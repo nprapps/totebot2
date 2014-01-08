@@ -24,8 +24,10 @@
     "hubot-scripts": ">= 2.4.2",
     "hubot-hipchat": "~2.5.1-1",
     "jsdom": ">=0.8.1",
+    "cron": "1.0.1",
     "jquery": "",
-    "moment": ""
+    "moment": "",
+    "googleapis": ""
   },
   "engines": {
     "node": ">= 0.8.x",
