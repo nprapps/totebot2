@@ -1,6 +1,6 @@
 {
   "name": "hosted-hubot",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "author": "GitHub Inc.",
   "keywords": [
     "github",
@@ -20,13 +20,13 @@
     "url": "https://github.com/github/hubot.git"
   },
   "dependencies": {
-    "hubot": ">= 2.5.1",
-    "hubot-scripts": ">= 2.4.2",
-    "hubot-hipchat": "~2.5.1-1",
-    "jsdom": ">=0.8.1",
+    "hubot": ">= 2.6.0 < 3.0.0",
+    "hubot-scripts": ">= 2.5.0 < 3.0.0",
+    "hubot-hipchat": "~2.5.1-4",
+    "jsdom": "~0.8.1",
     "cron": "1.0.1",
-    "jquery": "",
-    "moment": "",
+    "jquery": "~1.8.3",
+    "moment": "~2.1.0",
     "googleapis": ""
   },
   "engines": {
