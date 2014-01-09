@@ -43,7 +43,15 @@ export HUBOT_LOG_LEVEL=debug
 ```
 
 ## Deployment
-Like your new scripts? Add them to the repository and then send them along.
+1. Make sure you've exported prefixed versions of our environment variables like so:
+```
+export TOTEBOT2_HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
+export TOTEBOT2_HUBOT_HIPCHAT_PASSWORD=password
+export TOTEBOT2_HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
+export TOTEBOT2_HUBOT_LOG_LEVEL=debug
+```
+
+1. Add your new scripts to the repository and send them along.
 ```
 fab production master deploy
 ```
