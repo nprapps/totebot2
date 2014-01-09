@@ -56,7 +56,7 @@ calendarEventLength  = (1000 * 60 * 60) * 3 # hours
 googleapis = require('googleapis')
 
 module.exports = (robot) ->
-  robot.respond /hangout( me)?\s*(.+)?/, (msg) ->
+  robot.respond /\bhangout( me)?\s*(.+)?/, (msg) ->
     summary     = msg.match[2] or "Hangout"
     description = "Requested by #{msg.message.user.name} in #{msg.message.user.room}"
 
