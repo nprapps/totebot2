@@ -45,6 +45,10 @@
 #
 #   If you specify a different redirect URI, set the
 #   HUBOT_GOOGLE_CALENDAR_REDIRECT_URI environment variable too.
+#
+# Author:
+#   alindeman
+#   https://github.com/hubot-scripts/hubot-google-hangouts/
 
 calendarClientId     = process.env.HUBOT_GOOGLE_CALENDAR_CLIENT_ID
 calendarClientSecret = process.env.HUBOT_GOOGLE_CALENDAR_CLIENT_SECRET
