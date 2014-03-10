@@ -73,6 +73,8 @@ module.exports = (robot) ->
       req = client.calendar.events.insert { calendarId: calendarId },
         summary: "Google Hangout: #{summary}"
         description: description
+        anyoneCanAddSelf: true
+        visibility: 'public'
         reminders:
           overrides:
             method: 'popup'
