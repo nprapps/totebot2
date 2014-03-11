@@ -64,63 +64,63 @@ module.exports = (robot) ->
     summary     = msg.match[4] or "Hangout"
     description = "Requested by #{msg.message.user.name} in #{msg.message.user.room}"
 
-        createCalendarEvent msg, summary, description, (err, event) ->
-          email = msg.user.email_address
-          
-          if err
-            msg.send "I'm sorry. Something went wrong and I wasn't able to create a hangout :("
-          else
-            response  = "I've started a hangout titled '#{summary}'\n"
-            if email
-              response += "#{event.hangoutLink}?authuser=#{email}\n"
-            else
-              response += "Primary account: #{event.hangoutLink}\n"
-              response += "Secondary account: #{event.hangoutLink}?authuser=1"
-            msg.send response
+    createCalendarEvent msg, summary, description, (err, event) ->
+      email = msg.user.email_address
 
-      createCalendarEvent = (msg, summary, description, callback) ->
-        withGoogleClient msg, (client) ->
-          req = client.calendar.events.insert { calendarId: calendarId },
-            summary: "Google Hangout: #{summary}"
-            description: description
-            reminders:
-              overrides:
-                method: 'popup'
-                minutes: 0
-            start:
-              dateTime: new Date().toISOString()
-            end:
-              dateTime: new Date(+new Date() + calendarEventLength).toISOString()
-
-          req.withAuthClient(client.authClient).execute(callback)
-
-      googleClient = undefined
-      withGoogleClient = (msg, callback) ->
-        if googleClient?
-          callback(googleClient)
+      if err
+        msg.send "I'm sorry. Something went wrong and I wasn't able to create a hangout :("
+      else
+        response  = "I've started a hangout titled '#{summary}'\n"
+        if email
+          response += "#{event.hangoutLink}?authuser=#{email}\n"
         else
-          return if missingEnvironmentForApi(msg)
-          googleapis.discover('calendar', 'v3').execute (err, client) ->
-            if err
-              msg.send "I'm sorry. I wasn't able to communicate with Google right now :("
-            else
-              authClient = new googleapis.OAuth2Client(
-                calendarClientId, calendarClientSecret, calendarRedirectUri
-              )
-              authClient.credentials = { refresh_token: calendarRefreshToken }
+          response += "Primary account: #{event.hangoutLink}\n"
+          response += "Secondary account: #{event.hangoutLink}?authuser=1"
+        msg.send response
 
-              googleClient = client.withAuthClient(authClient)
-              callback(googleClient)
+  createCalendarEvent = (msg, summary, description, callback) ->
+    withGoogleClient msg, (client) ->
+      req = client.calendar.events.insert { calendarId: calendarId },
+        summary: "Google Hangout: #{summary}"
+        description: description
+        reminders:
+          overrides:
+            method: 'popup'
+            minutes: 0
+        start:
+          dateTime: new Date().toISOString()
+        end:
+          dateTime: new Date(+new Date() + calendarEventLength).toISOString()
 
-      missingEnvironmentForApi = (msg) ->
-        missingAnything = false
-        unless calendarClientId?
-          msg.send "Calendar Client ID is missing: Ensure that HUBOT_GOOGLE_CALENDAR_CLIENT_ID is set."
-          missingAnything = true
-        unless calendarClientSecret?
-          msg.send "Calendar Client Secret is missing: Ensure that HUBOT_GOOGLE_CALENDAR_CLIENT_SECRET is set."
-          missingAnything = true
-        unless calendarRefreshToken?
-          msg.send "Calendar Refresh Token is missing: Ensure that HUBOT_GOOGLE_CALENDAR_REFRESH_TOKEN is set."
-          missingAnything = true
-        missingAnything
+      req.withAuthClient(client.authClient).execute(callback)
+
+  googleClient = undefined
+  withGoogleClient = (msg, callback) ->
+    if googleClient?
+      callback(googleClient)
+    else
+      return if missingEnvironmentForApi(msg)
+      googleapis.discover('calendar', 'v3').execute (err, client) ->
+        if err
+          msg.send "I'm sorry. I wasn't able to communicate with Google right now :("
+        else
+          authClient = new googleapis.OAuth2Client(
+            calendarClientId, calendarClientSecret, calendarRedirectUri
+          )
+          authClient.credentials = { refresh_token: calendarRefreshToken }
+
+          googleClient = client.withAuthClient(authClient)
+          callback(googleClient)
+
+  missingEnvironmentForApi = (msg) ->
+    missingAnything = false
+    unless calendarClientId?
+      msg.send "Calendar Client ID is missing: Ensure that HUBOT_GOOGLE_CALENDAR_CLIENT_ID is set."
+      missingAnything = true
+    unless calendarClientSecret?
+      msg.send "Calendar Client Secret is missing: Ensure that HUBOT_GOOGLE_CALENDAR_CLIENT_SECRET is set."
+      missingAnything = true
+    unless calendarRefreshToken?
+      msg.send "Calendar Refresh Token is missing: Ensure that HUBOT_GOOGLE_CALENDAR_REFRESH_TOKEN is set."
+      missingAnything = true
+    missingAnything
