@@ -17,6 +17,6 @@ jeremy = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /i miss (jeremy|bowers)/i, (msg) ->
+  robot.hear /miss (jeremy|bowers)/i, (msg) ->
     msg.send ':('
     msg.send msg.random jeremy
