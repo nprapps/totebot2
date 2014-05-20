@@ -13,7 +13,8 @@
 jeremy = [
   "http://dl.dropboxusercontent.com/u/5245886/gifs/bowers-dance.gif",
   "http://dl.dropboxusercontent.com/u/5245886/gifs/bowers-dance2.gif",
-  "http://dl.dropboxusercontent.com/u/5245886/gifs/bowers-raisetheroof.gif"
+  "http://dl.dropboxusercontent.com/u/5245886/gifs/bowers-raisetheroof.gif",
+  "https://dl.dropboxusercontent.com/u/743518/bowers_hotd_dealwithit.gif"
 ]
 
 module.exports = (robot) ->
