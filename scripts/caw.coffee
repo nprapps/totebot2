@@ -19,5 +19,5 @@ images = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /(caw|eagle|freedom|liberty|america)/i, (msg) ->
+  robot.hear /\bm(e|u)rica\b/i, (msg) ->
     msg.send msg.random images
