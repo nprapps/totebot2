@@ -4,7 +4,7 @@ module.exports = (robot) ->
   robot.hear /bogle no/i, (msg) ->
     msg.send nope
 
-  robot.hear /(\bno)/i, (msg) ->
+  robot.hear /\b(no)\b$/i, (msg) ->
   	name = msg.message.user.name
   	if name == 'Emily Bogle'
     msg.send nope
