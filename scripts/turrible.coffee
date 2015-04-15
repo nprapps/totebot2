@@ -1,7 +1,7 @@
 turrible = [
-	"https://s3.amazonaws.com/npr-images/thats-turrible.jpg",
-	"https://s3.amazonaws.com/npr-images/turrible-turrible.jpeg",
-	"https://s3.amazonaws.com/npr-images/logic-terrible.jpg"
+	"https://totebot-images.s3.amazonaws.com/thats-turrible.jpg",
+	"https://totebot-images.s3.amazonaws.com/turrible-turrible.jpeg",
+	"https://totebot-images.s3.amazonaws.com/logic-terrible.jpg"
 	]
 
 module.exports = (robot) ->
