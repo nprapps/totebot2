@@ -60,7 +60,7 @@ get_food_trucks = (msg) ->
             ).createWindow()
 
             trucks = "Here are the food trucks near us today: \n"
-            mapAreas = ['Union Station', 'CNN', 'NoMa']
+            mapAreas = ['NoMa', 'CNN', 'Union Station']
             $ = require('jquery').create(window)
 
             for area in mapAreas
