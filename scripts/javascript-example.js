@@ -12,6 +12,6 @@
 
 module.exports = function(robot) {
     robot.respond(/do you understand plain javascript\?/i, function(msg){
-        msg.reply('Indeed. Coffeescript makes my head hurt.');
+        msg.reply('Definitely. Plain javascript is so on fleek.');
     });
 }
