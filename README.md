@@ -11,9 +11,9 @@ Additional thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.c
 
 ## Initial setup
 
-1. Create a [new HipChat account](https://www.hipchat.com/help/page/how-do-i-invite-other-users/) for your bot to use. Stay signed in to the account - we'll need to access its account settings later.
+* Create a [new HipChat account](https://www.hipchat.com/help/page/how-do-i-invite-other-users/) for your bot to use. Stay signed in to the account - we'll need to access its account settings later.
 
-2. Add the proper environment variables to your ```.bash_profile```. (Stored in our team environment variables file &mdash; ask David, Tyler or Chris.)
+* Add the proper environment variables to your ```.bash_profile```. (Stored in our team environment variables file &mdash; ask David, Tyler or Chris.)
 ```
 export HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
 export HUBOT_HIPCHAT_PASSWORD=password
@@ -21,33 +21,7 @@ export HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
 export HUBOT_LOG_LEVEL=debug
 ```
 
-3. Make sure native dependencies are installed:
-```
-(e.g. OS X with brew)
-% brew install icu4c
-% brew link icu4c
-
-(e.g. Linux with apt-get)
-% apt-get install libexpat1-dev
-% apt-get install libicu-dev
-```
-
-4. Install `hubot` from npm, if you don't already have it:
-```
-% npm install --global hubot
-```
-
-5. Switch to the new `hubot` directory:
-```
-% cd <above path>
-```
-
-6. Install `hubot` dependencies:
-```
-% npm install
-```
-
-7. In your main projects folder (e.g., ~/src/), clone this repo and set up a virtual environment
+* In your main projects folder (e.g., ~/src/), clone this repo and set up a virtual environment
 ```
 cd ~/src/
 git clone git@github.com:nprapps/totebot2.git
@@ -55,51 +29,57 @@ cd totebot2
 mkvirtualenv totebot2
 ```
 
-8. Install required libraries
+* Install required libraries
 ```
 pip install -r requirements.txt
 npm install
+brew install icu4c
+brew link icu4c
 brew install redis
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 ```
 
+* Install `hubot` from npm, if you don't already have it:
+```
+npm install --global hubot
+```
+
+* Switch to the new `hubot` directory (it might be `/usr/local/lib/node_modules/hubot`) and install dependencies:
+```
+cd <above path>
+npm install
+```
 
 ## Local development
 
-1. Start the totebot virtualenv
+* Start the totebot virtualenv
 ```
 cd ~/src/totebot2
 workon totebot2
 ```
 
-1. Start Hubot
+* Start Hubot
 ```
 hubot
 ```
 
-Hubot will run through the scripts in your ```scripts``` folder and let you know about any errors or warnings. Then it will appear to stall. Press the ```enter``` key to bring up the ```Hubot >``` prompt.
+Hubot will run through the scripts in your `scripts` folder and let you know about any errors or warnings. Then it will appear to stall. Press the `enter` key to bring up the `Hubot >` prompt.
 
-If you're testing a command to be directed specifically at Totebot (for example, ```@totebot next train```), you will want to address ```@hubot``` at the prompt (```@hubot next train```).
+If you're testing a command to be directed specifically at Totebot (for example, `@totebot next train`), you will want to address `@hubot` at the prompt (`@hubot next train`).
 
 
 ## Deployment
 
-1. Make sure you've exported prefixed versions of our environment variables like so:
-```
-export TOTEBOT2_HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
-export TOTEBOT2_HUBOT_HIPCHAT_PASSWORD=password
-export TOTEBOT2_HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
-export TOTEBOT2_HUBOT_LOG_LEVEL=debug
-```
+* Make sure you've exported prefixed versions of our environment variables (see "Initial Setup")
 
-2. Commit your new scripts to the repository.
+* Commit your new scripts to the repo.
 
-3. Deploy.
+* Deploy.
 ```
 fab utils master deploy
 ```
 
 We don't have a staging environment yet.
 
-4. To test your script in HipChat, start a conversation with Totebot (like you would another person) and type in your commands.
+* To test your script in HipChat, start a conversation with Totebot (like you would another person) and type in your commands.
