@@ -19,9 +19,9 @@ get_next_train = (msg) ->
         .get() (error, response, body) ->
             # passes back the complete reponse
             response = JSON.parse(body)
-            msg.send response
+            msg.send response['Trains']
             if response.success == "true"
-                msg.send response.Trains[0]
+                msg.send response['Trains'][0]
             else
                 msg.send "Unable to get train data right now."    
 
