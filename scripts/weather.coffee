@@ -15,6 +15,7 @@
 #   markstory
 #   mbmccormick
 #   dannydb
+moment = require('moment')
 env = process.env
 
 forecastIoUrl = 'https://api.forecast.io/forecast/' + process.env.HUBOT_FORECAST_API_KEY + '/'
@@ -86,6 +87,37 @@ lookupForecast = (msg, coords, err) ->
     text = appendText text, dayAfter
     msg.send text
 
+lookupHourlyForecast = (msg, coords, err) ->
+  return msg.send err if err
+  return msg.send "You need to set env.HUBOT_FORECAST_API_KEY to get weather data" if not env.HUBOT_FORECAST_API_KEY
+
+  url = forecastIoUrl + coords.lat + ',' + coords.lng
+  msg.http(url).query(units: 'ca').get() (err, res, body) ->
+    return msg.send 'Could not get weather forecast' if err
+    try
+      body = JSON.parse body
+      forecast = body.hourly.data
+    catch err
+      return msg.send 'Unable to parse forecast data.'
+    text = "The weather until " + moment().add(8,'h').format('h') + " o'clock:\n"
+
+    appendText = (text, data) ->
+      time = moment.unix(data.time).format('ha')
+      humidity = (data.humidity * 100).toFixed 0
+      temperature = getTemp data.temperature
+      feelsLike = getTemp data.apparentTemperature
+
+      text += "#{time}: #{temperature} (feels like #{feelsLike}), "
+      text += "#{data.summary}, #{humidity}% humidity\n"
+      text
+
+    i = 0
+    while i < 9
+      text = appendText text, forecast[i]
+      i++
+
+    msg.send text
+
 getTemp = (c) ->
   if env.HUBOT_WEATHER_CELSIUS
     return c.toFixed(0) + "ºC"
@@ -100,3 +132,7 @@ module.exports = (robot) ->
   robot.respond /forecast(?: me|for|in)?\s?(.*)/i, (msg) ->
     location = msg.match[1]
     lookupAddress(msg, location, lookupForecast)
+
+  robot.respond /hourly forecast(?: me|for|in)?\s?(.*)/i, (msg) ->
+    location = msg.match[1]
+    lookupAddress(msg, location, lookupHourlyForecast)
