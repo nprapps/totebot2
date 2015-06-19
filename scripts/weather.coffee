@@ -6,18 +6,24 @@
 #   HUBOT_FORECAST_API_KEY - Forecast.io API Key
 #
 # Commands:
+#   hubot weather - Get the weather for NPR.
+#   hubot forecast - Get the 3 day forecast for NPR.
 #   hubot weather <city> - Get the weather for a location.
 #   hubot forecast <city> - Get the 3 day forecast for a location.
 #
 # Author:
 #   markstory
 #   mbmccormick
+#   dannydb
 env = process.env
 
 forecastIoUrl = 'https://api.forecast.io/forecast/' + process.env.HUBOT_FORECAST_API_KEY + '/'
 googleMapUrl = 'http://maps.googleapis.com/maps/api/geocode/json'
 
 lookupAddress = (msg, location, cb) ->
+  if location.length is 0
+    location = '1111 North Capitol Street NE, 20002'
+
   msg.http(googleMapUrl).query(address: location, sensor: true)
     .get() (err, res, body) ->
       try
@@ -87,11 +93,10 @@ getTemp = (c) ->
 
 
 module.exports = (robot) ->
-
-  robot.respond /weather(?: me|for|in)?\s(.*)/i, (msg) ->
+  robot.respond /weather(?: me|for|in)?\s?(.*)/i, (msg) ->
     location = msg.match[1]
     lookupAddress(msg, location, lookupWeather)
 
-  robot.respond /forecast(?: me|for|in)?\s(.*)/i, (msg) ->
+  robot.respond /forecast(?: me|for|in)?\s?(.*)/i, (msg) ->
     location = msg.match[1]
     lookupAddress(msg, location, lookupForecast)
