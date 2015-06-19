@@ -99,7 +99,7 @@ lookupHourlyForecast = (msg, coords, err) ->
       forecast = body.hourly.data
     catch err
       return msg.send 'Unable to parse forecast data.'
-    text = "The weather until " + moment().add(8,'h').zone(4).format('ha') + "\n"
+    text = "The weather until " + moment().add(4,'h').zone(4).format('ha') + "\n"
 
     appendText = (text, data) ->
       time = moment.unix(data.time).zone(4).format('ha')
@@ -113,7 +113,7 @@ lookupHourlyForecast = (msg, coords, err) ->
       text
 
     i = 0
-    while i < 9
+    while i < 5
       text = appendText text, forecast[i]
       i++
 
