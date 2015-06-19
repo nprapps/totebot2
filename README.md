@@ -13,12 +13,20 @@ Additional thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.c
 
 * Create a [new HipChat account](https://www.hipchat.com/help/page/how-do-i-invite-other-users/) for your bot to use. Stay signed in to the account - we'll need to access its account settings later.
 
-* Add the proper environment variables to your ```.bash_profile```. (Stored in our team environment variables file &mdash; ask David, Tyler or Chris.)
+* Add the proper environment variables to your `.bash_profile` (Stored in our team environment variables file &mdash; ask David, Tyler or Chris). These unprefixed versions of the hubot environment variables will be used for local development.
 ```
 export HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
 export HUBOT_HIPCHAT_PASSWORD=password
 export HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
 export HUBOT_LOG_LEVEL=debug
+```
+
+* Add prefixed versions of the environment variables to `.bash_profile` (Also stored in our team environment variables file). The prefixed versions are used by the `fab [target] render_confs` command to deploy secrets to the server and are necessary in order to run multiple hubots without sharing API keys.
+```
+export TOTEBOT2_HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
+export TOTEBOT2_HUBOT_HIPCHAT_PASSWORD=password
+export TOTEBOT2_HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
+export TOTEBOT2_HUBOT_LOG_LEVEL=debug
 ```
 
 * In your main projects folder (e.g., ~/src/), clone this repo and set up a virtual environment
@@ -75,7 +83,14 @@ If you're testing a command to be directed specifically at Totebot (for example,
 
 * Commit your new scripts to the repo.
 
-* Deploy.
+* Add any necessary environment variables to `app_config.py` and `totebot2.conf`
+
+* Deploy environment variables to the server (if changed)
+```
+fab utils deploy_confs
+```
+
+* Deploy scripts.
 ```
 fab utils master deploy
 ```
