@@ -99,10 +99,10 @@ lookupHourlyForecast = (msg, coords, err) ->
       forecast = body.hourly.data
     catch err
       return msg.send 'Unable to parse forecast data.'
-    text = "The weather until " + moment().add(8,'h').zone(-4).format('ha') + "\n"
+    text = "The weather until " + moment().add(8,'h').zone(4).format('ha') + "\n"
 
     appendText = (text, data) ->
-      time = moment.unix(data.time).zone(-4).format('ha')
+      time = moment.unix(data.time).zone(4).format('ha')
       humidity = (data.humidity * 100).toFixed 0
       temperature = getTemp data.temperature
       feelsLike = getTemp data.apparentTemperature
