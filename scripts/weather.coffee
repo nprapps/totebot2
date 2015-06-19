@@ -46,11 +46,13 @@ lookupWeather = (msg, coords, err) ->
     try
       body = JSON.parse body
       current = body.currently
+      nextHour = body.minutely
     catch err
       return msg.send "Could not parse weather data."
     humidity = (current.humidity * 100).toFixed 0
     temperature = getTemp(current.temperature)
-    text = "It is currently #{temperature} #{current.summary}, #{humidity}% humidity"
+    hourSummary = nextHour.summary
+    text = "It is currently #{temperature} #{current.summary}, #{humidity}% humidity. #{hourSummary}"
     msg.send text
 
 lookupForecast = (msg, coords, err) ->
