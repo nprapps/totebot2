@@ -31,7 +31,8 @@ def get_secrets():
         '%s_HUBOT_GOOGLE_CALENDAR_CLIENT_ID' % CONFIG_NAME,
         '%s_HUBOT_GOOGLE_CALENDAR_CLIENT_SECRET' % CONFIG_NAME,
         '%s_HUBOT_GOOGLE_CALENDAR_REFRESH_TOKEN' % CONFIG_NAME,
-        '%s_HUBOT_GOOGLE_CALENDAR_ID' % CONFIG_NAME
+        '%s_HUBOT_GOOGLE_CALENDAR_ID' % CONFIG_NAME,
+        '%s_HUBOT_FORECAST_API_KEY' % CONFIG_NAME
     ]
     secrets_dict = {}
     for secret in secrets:
