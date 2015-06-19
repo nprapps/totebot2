@@ -107,8 +107,9 @@ lookupHourlyForecast = (msg, coords, err) ->
       temperature = getTemp data.temperature
       feelsLike = getTemp data.apparentTemperature
 
-      text += "#{time}: #{temperature} (feels like #{feelsLike}), "
-      text += "#{data.summary}, #{humidity}% humidity\n"
+      text += "#{time}: #{data.summary}, "
+      text += "#{temperature} (feels like #{feelsLike}), "
+      text += "#{humidity}% humidity\n"
       text
 
     i = 0
