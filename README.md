@@ -13,7 +13,7 @@ Additional thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.c
 
 1. Create a [new HipChat account](https://www.hipchat.com/help/page/how-do-i-invite-other-users/) for your bot to use. Stay signed in to the account - we'll need to access its account settings later.
 
-1. Add the proper environment variables to your ```.bash_profile```. (Stored in our team environment variables file &mdash; ask David, Tyler or Chris.)
+2. Add the proper environment variables to your ```.bash_profile```. (Stored in our team environment variables file &mdash; ask David, Tyler or Chris.)
 ```
 export HUBOT_HIPCHAT_JID=1111_2222@chat.hipchat.com
 export HUBOT_HIPCHAT_PASSWORD=password
@@ -21,7 +21,7 @@ export HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
 export HUBOT_LOG_LEVEL=debug
 ```
 
-1. Make sure native dependencies are installed:
+3. Make sure native dependencies are installed:
 ```
 (e.g. OS X with brew)
 % brew install icu4c
@@ -32,22 +32,22 @@ export HUBOT_LOG_LEVEL=debug
 % apt-get install libicu-dev
 ```
 
-1. Install `hubot` from npm, if you don't already have it:
+4. Install `hubot` from npm, if you don't already have it:
 ```
 % npm install --global hubot
 ```
 
-1. Switch to the new `hubot` directory:
+5. Switch to the new `hubot` directory:
 ```
 % cd <above path>
 ```
 
-1. Install `hubot` dependencies:
+6. Install `hubot` dependencies:
 ```
 % npm install
 ```
 
-1. In your main projects folder (e.g., ~/src/), clone this repo and set up a virtual environment
+7. In your main projects folder (e.g., ~/src/), clone this repo and set up a virtual environment
 ```
 cd ~/src/
 git clone git@github.com:nprapps/totebot2.git
@@ -55,7 +55,7 @@ cd totebot2
 mkvirtualenv totebot2
 ```
 
-1. Install required libraries
+8. Install required libraries
 ```
 pip install -r requirements.txt
 npm install
@@ -75,7 +75,7 @@ workon totebot2
 
 1. Start Hubot
 ```
-Hubot
+hubot
 ```
 
 Hubot will run through the scripts in your ```scripts``` folder and let you know about any errors or warnings. Then it will appear to stall. Press the ```enter``` key to bring up the ```Hubot >``` prompt.
@@ -93,13 +93,13 @@ export TOTEBOT2_HUBOT_HIPCHAT_ROOMS=1111_name@conf.hipchat.com
 export TOTEBOT2_HUBOT_LOG_LEVEL=debug
 ```
 
-1. Commit your new scripts to the repository.
+2. Commit your new scripts to the repository.
 
-1. Deploy.
+3. Deploy.
 ```
 fab utils master deploy
 ```
 
 We don't have a staging environment yet.
 
-1. To test your script in HipChat, start a conversation with Totebot (like you would another person) and type in your commands.
+4. To test your script in HipChat, start a conversation with Totebot (like you would another person) and type in your commands.
