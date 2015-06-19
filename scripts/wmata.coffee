@@ -21,9 +21,24 @@ get_next_train = (msg) ->
             trains = JSON.parse(body)
             if error
                 msg.send 'Unable to get train data right now.'
-                msg.send error
             else
-                msg.send trains[0]
+                trainData = 'Next Trains at NoMa-Gallaudet:\n'
+                for train in trains['Trains']
+                    trainData += 'Toward '
+                    if (train['Destination'] == 'Train')
+                        trainData += '¯\\_(ツ)_/¯'
+                    else
+                        trainData += train['Destination']
+                    trainData += ': ';
+                    if train['Min'] == 'ARR' || train['Min'] == 'BRD'
+                        trainData += train['Min']
+                    else if train['Min'] == 1
+                        trainData += train['Min'] + ' minute'
+                    else
+                        trainData += train['Min'] + ' minutes'
+                    trainData += '\n'
+                
+                msg.send trainData
 
 module.exports = (robot) ->
 	robot.respond /next train/i, (msg) ->
