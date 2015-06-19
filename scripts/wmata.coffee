@@ -18,11 +18,12 @@ get_next_train = (msg) ->
         .header('Accept', 'application/json')
         .get() (error, response, body) ->
             # passes back the complete reponse
-            response = JSON.parse(body)
-            if err
+            trains = JSON.parse(body)
+            if error
                 msg.send 'Unable to get train data right now.'
+                msg.send error
             else
-                msg.send response[0]
+                msg.send trains[0]
 
 module.exports = (robot) ->
 	robot.respond /next train/i, (msg) ->
