@@ -19,6 +19,7 @@ get_next_train = (msg) ->
         .get() (error, response, body) ->
             # passes back the complete reponse
             response = JSON.parse(body)
+            msg.send response
             if response.success == "true"
                 msg.send response.Trains[0]
             else
