@@ -15,6 +15,6 @@ stab = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /(shiv\b|knife|stab\b|stabb.*\b)/i, (msg) ->
+  robot.hear /stabby/i, (msg) ->
     msg.send '*squilk*'
     msg.send msg.random stab
