@@ -29,5 +29,5 @@ images = [
 
 
 module.exports = (robot) ->
-  robot.hear /applau(d|se)|bravo|slow clap/i, (msg) ->
+  robot.hear /applau(d|se)|bravo|brava|slow clap/i, (msg) ->
     msg.send msg.random images
