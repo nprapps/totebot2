@@ -1,5 +1,6 @@
 timesheet = [
-	"http://media.giphy.com/media/QNv4mKyspa8j6/giphy.gif"
+	"http://media.giphy.com/media/QNv4mKyspa8j6/giphy.gif",
+	"https://s3.amazonaws.com/uploads.hipchat.com/46822/1264985/GyDJDhDx8qv6iEM/adcwjdjr5j.gif"
 	]
 
 module.exports = (robot) ->
