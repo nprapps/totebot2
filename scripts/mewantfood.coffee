@@ -11,38 +11,39 @@ jsdom = require('jsdom').jsdom
 truckUrl = "http://foodtruckfiesta.com/dc-food-truck-list/"
 
 get_soundbites_menu = (msg) ->
-  url = "http://dining.guckenheimer.com/clients/npr/FSS/fss.nsf/weeklyMenuLaunch/95RPBM~"
-  url += moment().startOf('week').add('days', 1).format('MM-DD-YYYY')
-  url += "/$file/"
-  url += moment().format('ddd').toLowerCase()
-  url += ".htm"
-  msg
-    .http(url)
-    .get() (err, res, body) ->
-        if err
-            msg.send 'I can\'t find a menu for today.'
-        else
-            window = (jsdom body, null,
-              features :
-                FetchExternalResources : false
-                ProcessExternalResources : false
-                MutationEvents : false
-                QuerySelector : false
-            ).createWindow()
-
-            food = "Here's the Sound Bites menu for today: \n\n"
-
-            $ = require('jquery').create(window)
-            $('h2, span').each (index, element) =>
-                if $(element).text()
-                    menu_text = $(element).html()
-                                          .replace(/(<br \/>)/g, '\n')
-                                          .replace(/(&nbsp;)/g, ' ')
-                                          .replace(/(&amp;)/g, '&')
-                    food += menu_text + '\n'
-                    if element.style['0'] != 'font-weight'
-                      food += '\n'
-            msg.send food
+    msg.send 'Here\'s the SoundBites menu for this week: https://intranet.npr.org/intranet/publish/Main/Employee_Resources/Sound_Bites_Cafe.php'
+  # url = "http://dining.guckenheimer.com/clients/npr/FSS/fss.nsf/weeklyMenuLaunch/95RPBM~"
+  # url += moment().startOf('week').add('days', 1).format('MM-DD-YYYY')
+  # url += "/$file/"
+  # url += moment().format('ddd').toLowerCase()
+  # url += ".htm"
+  # msg
+  #   .http(url)
+  #   .get() (err, res, body) ->
+  #       if err
+  #           msg.send 'I can\'t find a menu for today.'
+  #       else
+  #           window = (jsdom body, null,
+  #             features :
+  #               FetchExternalResources : false
+  #               ProcessExternalResources : false
+  #               MutationEvents : false
+  #               QuerySelector : false
+  #           ).createWindow()
+  #
+  #           food = "Here's the Sound Bites menu for today: \n\n"
+  #
+  #           $ = require('jquery').create(window)
+  #           $('h2, span').each (index, element) =>
+  #               if $(element).text()
+  #                   menu_text = $(element).html()
+  #                                         .replace(/(<br \/>)/g, '\n')
+  #                                         .replace(/(&nbsp;)/g, ' ')
+  #                                         .replace(/(&amp;)/g, '&')
+  #                   food += menu_text + '\n'
+  #                   if element.style['0'] != 'font-weight'
+  #                     food += '\n'
+  #           msg.send food
 
 get_food_trucks = (msg) ->
   msg
