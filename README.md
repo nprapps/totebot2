@@ -98,3 +98,10 @@ fab utils master deploy
 We don't have a staging environment yet.
 
 * To test your script in HipChat, start a conversation with Totebot (like you would another person) and type in your commands.
+
+## Maintenance
+
+* Sometimes, Totebot goes away. :( To restart:
+```
+fab utils restart_init
+```
