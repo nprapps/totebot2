@@ -6,5 +6,5 @@ timesheet = [
 	]
 
 module.exports = (robot) ->
-  robot.hear /(timesheet)/i, (msg) ->
+  robot.hear /(timesheet|time sheet)/i, (msg) ->
     msg.send msg.random timesheet
