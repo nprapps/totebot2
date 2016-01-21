@@ -70,7 +70,8 @@ get_food_trucks = (msg) ->
               if truckElements.length > 0
                 trucks += '\n## ' + area + '\n'
                 truckElements.each (index, element) =>
-                  trucks += $(element).find('span').text() + ' ' + $(element).attr('href') + '\n'
+                #   trucks += $(element).find('span').text() + ' ' + $(element).attr('href') + '\n'
+                  trucks += $(element).find('span').text() + '\n'
 
             trucks += '\nhttp://foodtruckfiesta.com/apps/maplarge.html'
 
