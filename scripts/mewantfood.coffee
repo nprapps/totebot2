@@ -52,33 +52,37 @@ get_food_trucks = (msg) ->
         if err
             msg.send 'I can\'t find a menu for today.'
         else
-            window = (jsdom body, null,
-              features :
-                FetchExternalResources : false
-                ProcessExternalResources : false
-                MutationEvents : false
-                QuerySelector : false
-            ).createWindow()
+            exports.msg = msg
+            config =
+                html: body
+                scripts: [
+                    'http://code.jquery.com/jquery-1.12.1.js'
+                ]
+                done: scrape
 
-            trucks = "Here are the food trucks near us today: \n"
-            mapAreas = ['NoMa', 'CNN', 'Union Station']
-            $ = require('jquery').create(window)
+            jsdom.env config
 
-            for area in mapAreas
-              selector = "h2:contains(" + area + ")"
-              truckElements = $(selector).nextUntil("h2").find('a')
-              if truckElements.length > 0
-                trucks += '\n## ' + area + '\n'
-                truckElements.each (index, element) =>
-                #   trucks += $(element).find('span').text() + ' ' + $(element).attr('href') + '\n'
-                  trucks += $(element).find('span').text() + '\n'
 
-            trucks += '\nhttp://foodtruckfiesta.com/apps/maplarge.html'
+scrape = (err, window) ->
+    $ = window.jQuery
+    trucks = "Here are the food trucks near us today: \n"
+    mapAreas = ['NoMa', 'CNN', 'Union Station']
 
-            msg.send trucks
+    for area in mapAreas
+      selector = "h2:contains(" + area + ")"
+      truckElements = $(selector).nextUntil("h2").find('a')
+      if truckElements.length > 0
+        trucks += '\n## ' + area + '\n'
+        truckElements.each (index, element) =>
+        #   trucks += $(element).find('span').text() + ' ' + $(element).attr('href') + '\n'
+          trucks += $(element).find('span').text() + '\n'
+
+    trucks += '\nhttp://foodtruckfiesta.com/apps/maplarge.html'
+
+    exports.msg.send trucks
 
 module.exports = (robot) ->
-    robot.respond /me want food|menu me|what's for lunch|lunch/i, (msg) ->
+    robot.respond /me want food|menu me|what(.)s for lunch|lunch/i, (msg) ->
       get_soundbites_menu(msg)
       get_food_trucks(msg)
 
