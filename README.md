@@ -1,5 +1,7 @@
 # Totebot
 
+**This project is no longer maintained. We have updated javascript dependencies due to github security warning but have not tested the actual impact of that measure on the app functionality.**
+
 Derived from the ubiquitous NPR tote bag, Totebot2 follows our conversations on HipChat and provides us with some ambient awareness. Also, humor.
 
 Additional thanks to the [Los Angeles Times Data Desk](http://datadesk.latimes.com/) and their [copyboy project](https://github.com/datadesk/copyboy).
